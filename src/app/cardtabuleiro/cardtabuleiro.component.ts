@@ -12,6 +12,8 @@ export class CardtabuleiroComponent implements OnInit {
   public listaDeJogadasAcertadas: string[] = new Array
   public listaDeJogadasErradas: string[] = new Array
   public letraJogada: string
+  public numeroJogadas: number = 0
+  public quantidadeDeAcertos: number = 0
 
   //mock palavras do jogo
   public palavras: Palavra[] = [
@@ -19,7 +21,6 @@ export class CardtabuleiroComponent implements OnInit {
     new Palavra('agenda'),
     new Palavra('caneta')
   ]
-
   constructor() {
     this.palavra = this.palavras[1].caracteres
     console.log(this.montarListaDeLetrasDaPalavra())
@@ -35,19 +36,22 @@ export class CardtabuleiroComponent implements OnInit {
     console.log('Quantidade de index lista das palavras da letra ' + this.listaDeLetras.length)
     console.log('Lista de Letras ' + this.listaDeLetras)
     console.log('Lista de Jogadas ' + this.listaDeJogadasAcertadas)
-
-
     return this.listaDeLetras
+
   }
 
   verificarLetra(): void {
     //alert("A letra digitada pelo usuario é " + this.letraJogada)
-
+    this.numeroJogadas++
     for (var index = 0; index < this.listaDeLetras.length; index++) {
 
       if (this.listaDeLetras[index] === this.letraJogada) {
+        //Houve acerto
         this.listaDeJogadasAcertadas[index] = this.letraJogada
+        this.quantidadeDeAcertos++
+        this.verificarResultadoFinal()
       } else {
+        //Houve erro
         this.listaDeJogadasErradas[index] = this.letraJogada
       }
     }
@@ -57,6 +61,15 @@ export class CardtabuleiroComponent implements OnInit {
     this.letraJogada = (<HTMLInputElement>evento.target).value
     console.log(this.letraJogada)
     console.log('Letras Erradas ' + this.listaDeJogadasErradas)
+
+  }
+
+  verificarResultadoFinal(): void {
+    if (this.quantidadeDeAcertos === this.listaDeJogadasAcertadas.length) {
+      alert('Parabéns você venceu o desafio!! A palavra correta é ' + this.palavra)
+    }
+    //Implementação do componente 'CardPersonagem'
+
   }
 
   ngOnInit() {

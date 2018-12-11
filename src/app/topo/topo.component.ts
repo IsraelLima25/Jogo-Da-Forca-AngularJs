@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopoComponent implements OnInit {
 
-  public tituloNav:string="Jogo da Forca"
+  public tituloNav:string="Tradicional Jogo da Forca"
   constructor() { }
 
   ngOnInit() {

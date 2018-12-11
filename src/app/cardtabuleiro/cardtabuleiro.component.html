@@ -1,18 +1,19 @@
 <div class="jumbotron">
-    <div class="container">
+    <div class="container">        
         <div class="row">
-            <div *ngFor="let lista of listaDeJogadasAcertadas" class="col-md-1">
-                <input disabled="true" [value]="lista" type="text" class="form-control text-center" />
+            <div class="d-flex justify-content-center">                
+                <div *ngFor="let lista of listaDeJogadasAcertadas" class="col-sm-1">
+                    <input disabled="true" [value]="lista" type="text" class="form-control text-center" />
+                </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col text-center alinhar">
+            <p style="color:red;">Erros.</p>
+            <p style="color:red;">{{listaDeJogadasErradas.toString()}}</p>
             <p>Digite uma letra.</p>
+            <input type="text" autofocus (input)="atualizaLetra($event)" [value]="letraJogada" class="form-control text-center" />
+            <button class="btn btn-primary btn-lg alinhar" (click)="jogar()">Jogar</button>
         </div>
-        <div class="col-sm-5">
-            <input type="email" (input)="atualizaLetra($event)" class="form-control" />
-        </div>
-        <div class="col">
-            <button class="btn btn-primary btn-sm" (click)="verificarLetra()">Jogar</button>
-        </div>
+
     </div>
 </div>
